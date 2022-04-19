@@ -4,7 +4,6 @@ class Menu extends Phaser.Scene {
     }
 
     preload() {
-
     }
 
     create() {
@@ -24,9 +23,9 @@ class Menu extends Phaser.Scene {
       }
         
       // show menu text
-      this.add.text(game.config.width/2, game.config.height/2 - borderUISize - borderPadding, 'Benless Bunner', menuConfig).setOrigin(0.5);
+      this.add.text(game.config.width/2, game.config.height/2 - borderUISize - borderPadding*6,'Benless Bunner', menuConfig).setOrigin(0.5);
       this.add.text(game.config.width/2, game.config.height/2, 'Use arrowkeys to move & (F) to fire', menuConfig).setOrigin(0.5);
-      this.add.text(game.config.width/2, game.config.height/2 + borderUISize + borderPadding, 'Press fire to begin!', menuConfig).setOrigin(0.5);
+      this.add.text(game.config.width/2, game.config.height/2 + borderUISize + borderPadding*6, 'Press fire to begin!', menuConfig).setOrigin(0.5);
 
       // define keys
       keyLEFT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.LEFT);
