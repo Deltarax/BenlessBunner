@@ -9,7 +9,7 @@ let config = {
 
 let game = new Phaser.Game(config);
 
-// set UI sizes (adjusted to make the border smaller)
+// set UI sizes (adjusted to make the border smaller, NEEDS TO BE TWEAKED)
 let borderUISize = game.config.height / 25;
 let borderPadding = borderUISize / 5;
 

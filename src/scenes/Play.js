@@ -6,13 +6,17 @@ class Play extends Phaser.Scene {
     preload() {
         // Load images/tile sprites
         this.load.image('doggo', './assets/doggo.png');
+        this.load.image('evilCat', './assets/evilCat.png');
     }
 
     create() {
         console.log("Now Playing");
 
         // Adding doggo
-        this.player = new Player(this, game.config.width/4, game.config.height/2, 'doggo').setOrigin(0.5, 0);
+        this.player = new Player(this, game.config.width/4, game.config.height/2, 'doggo').setOrigin(0, 0);
+
+        //Adding boss
+        this.boss = new Boss(this, game.config.width - game.config.width/4, game.config.height/2, 'evilCat').setOrigin(0, 0);
 
         // white borders
         this.add.rectangle(0, 0, game.config.width, borderUISize, 0x000000).setOrigin(0, 0);
@@ -31,5 +35,6 @@ class Play extends Phaser.Scene {
     update() {
         // console.log("Now Updating");
         this.player.update();
+        this.boss.update();
     }
 }

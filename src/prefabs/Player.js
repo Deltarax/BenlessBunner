@@ -8,7 +8,9 @@ class Player extends Phaser.GameObjects.Sprite {
     }
 
     update() {
-        if(keyLEFT.isDown && this.x >= borderPadding + this.width) {
+
+        // movement (I'm not sure exactly how big borderbadding is)
+        if(keyLEFT.isDown && this.x >= borderPadding) {
             this.x -= this.moveSpeed;
         }
         if (keyRIGHT.isDown && this.x <= game.config.width/2 - this.width) {
