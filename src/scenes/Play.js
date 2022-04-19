@@ -8,10 +8,10 @@ class Play extends Phaser.Scene {
     }
 
     create() {
-
+        console.log("Now Playing");
     }
 
     update() {
-        
+        // console.log("Now Updating");
     }
 }
