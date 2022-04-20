@@ -1,9 +1,13 @@
 
 let config = {
     type: Phaser.CANVAS,
-    width: 640,
-    height: 480,
+    width: 960,
+    height: 540,
     backgroundColor: '#FFFFFF',
+    physics: {
+        default: 'arcade',
+        arcade: { debug: true }
+    },
     scene: [ Menu, Play ]
 }
 
@@ -15,3 +19,7 @@ let borderPadding = borderUISize / 5;
 
 // reserve keyboard variables
 let keyF, keyR, keyLEFT, keyRIGHT, keyUP, keyDOWN;
+
+// define globals
+let player = null;
+const playerVelocity = 150;

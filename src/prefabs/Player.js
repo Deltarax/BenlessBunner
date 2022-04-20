@@ -4,7 +4,7 @@ class Player extends Phaser.GameObjects.Sprite {
     
         // add object to existing scene
         scene.add.existing(this);
-        this.moveSpeed = 2;
+        this.moveSpeed = 5;
     }
 
     update() {
@@ -22,6 +22,9 @@ class Player extends Phaser.GameObjects.Sprite {
         if (keyDOWN.isDown && this.y <= game.config.height -
         borderPadding - this.height) {
             this.y += this.moveSpeed;
+        }
+        if (keyF.isDown) {
+            console.log("Fire!");
         }
     }
 

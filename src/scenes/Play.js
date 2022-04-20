@@ -13,16 +13,19 @@ class Play extends Phaser.Scene {
         console.log("Now Playing");
 
         // Adding doggo
-        this.player = new Player(this, game.config.width/4, game.config.height/2, 'doggo').setOrigin(0, 0);
+        // this.playerSprite = new Player(this, game.config.width/4, game.config.height/2, 'doggo').setOrigin(0, 0);
+        player = this.physics.add.sprite(game.config.width/4, game.config.height/2, 'doggo').setOrigin(0, 0);
+        player.setMaxVelocity(0, 600);
+        player.setCollideWorldBounds(true);
 
         //Adding boss
         this.boss = new Boss(this, game.config.width - game.config.width/4, game.config.height/2, 'evilCat').setOrigin(0, 0);
 
         // white borders
-        this.add.rectangle(0, 0, game.config.width, borderUISize, 0x000000).setOrigin(0, 0);
-        this.add.rectangle(0, game.config.height - borderUISize, game.config.width, borderUISize, 0x000000).setOrigin(0, 0);
-        this.add.rectangle(0, 0, borderUISize, game.config.height, 0x000000).setOrigin(0, 0);
-        this.add.rectangle(game.config.width - borderUISize, 0, borderUISize, game.config.height, 0x000000).setOrigin(0, 0);
+        // this.add.rectangle(0, 0, game.config.width, borderUISize, 0x000000).setOrigin(0, 0);
+        // this.add.rectangle(0, game.config.height - borderUISize, game.config.width, borderUISize, 0x000000).setOrigin(0, 0);
+        // this.add.rectangle(0, 0, borderUISize, game.config.height, 0x000000).setOrigin(0, 0);
+        // this.add.rectangle(game.config.width - borderUISize, 0, borderUISize, game.config.height, 0x000000).setOrigin(0, 0);
 
         // define keys
         keyF = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.F);
@@ -34,7 +37,24 @@ class Play extends Phaser.Scene {
 
     update() {
         // console.log("Now Updating");
-        this.player.update();
+        // player.update();
+
+        if(keyLEFT.isDown) {
+            player.body.position.x -= 5;
+        }
+        if (keyRIGHT.isDown && (player.body.position.x <= game.config.width/2)) {
+            player.body.position.x += 5;
+        }
+        if (keyUP.isDown) {
+            player.body.position.y -= 5;
+        }
+        if (keyDOWN.isDown) {
+            player.body.position.y += 5;
+        }
+        if (keyF.isDown) {
+            console.log("Fire!");
+        }
+
         this.boss.update();
     }
 }
