@@ -7,6 +7,7 @@ class Play extends Phaser.Scene {
         // Load images/tile sprites
         this.load.image('doggo', './assets/doggo.png');
         this.load.image('evilCat', './assets/evilCat.png');
+        this.load.image('bone', './assets/bone.png');
     }
 
     create() {
@@ -39,6 +40,7 @@ class Play extends Phaser.Scene {
         // console.log("Now Updating");
         // player.update();
 
+        // Player Movement
         if(keyLEFT.isDown) {
             player.body.position.x -= 5;
         }
@@ -51,8 +53,11 @@ class Play extends Phaser.Scene {
         if (keyDOWN.isDown) {
             player.body.position.y += 5;
         }
-        if (keyF.isDown) {
+        if (Phaser.Input.Keyboard.JustDown(keyF)) {
             console.log("Fire!");
+            // Creates the projectile
+            this.bone = this.physics.add.sprite(player.x, player.y, 'bone').setOrigin(0, 0);
+            this.bone.setVelocityX(1800); // Zoom!
         }
 
         this.boss.update();
