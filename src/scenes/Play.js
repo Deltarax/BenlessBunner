@@ -21,6 +21,7 @@ class Play extends Phaser.Scene {
 
         //Adding boss
         this.boss = new Boss(this, game.config.width - game.config.width/4, game.config.height/2, 'evilCat').setOrigin(0, 0);
+        // this.boss.setCollideWorldBounds(true);
 
         // white borders
         // this.add.rectangle(0, 0, game.config.width, borderUISize, 0x000000).setOrigin(0, 0);
@@ -34,6 +35,8 @@ class Play extends Phaser.Scene {
         keyRIGHT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.RIGHT);
         keyUP = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.UP);
         keyDOWN = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.DOWN);
+
+        this.score = 0;
     }
 
     update() {
@@ -61,5 +64,14 @@ class Play extends Phaser.Scene {
         }
 
         this.boss.update();
+
+        this.physics.world.collide(this.boss, this.bone, this.bossCollision, null, this);
     }
+
+    bossCollision(){
+        this.score++;
+        console.log(this.score);
+    }
+
+
 }

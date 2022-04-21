@@ -1,9 +1,11 @@
-class Boss extends Phaser.GameObjects.Sprite {
+class Boss extends Phaser.Physics.Arcade.Sprite {
     constructor(scene, x, y, texture, frame) {
         super(scene, x, y, texture, frame);
     
         // add object to existing scene
         scene.add.existing(this);
+        scene.physics.add.existing(this); // add's to physics system
+        // this.setImmovable();
         this.moveSpeed = 1;
         this.numberOfTicks = 0;
     }
