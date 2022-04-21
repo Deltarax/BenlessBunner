@@ -13,6 +13,20 @@ class Play extends Phaser.Scene {
     create() {
         console.log("Now Playing");
 
+        // menu text configuration
+        let menuConfig = {
+        fontFamily: 'Papyrus',
+        fontSize: '28px',
+        backgroundColor: '#FFFFFF',
+        color: '#0000FF',
+        align: 'right',
+        padding: {
+            top: 5,
+            bottom: 5,
+        },
+        fixedWidth: 0
+        }
+
         // Adding doggo
         // this.playerSprite = new Player(this, game.config.width/4, game.config.height/2, 'doggo').setOrigin(0, 0);
         player = this.physics.add.sprite(game.config.width/4, game.config.height/2, 'doggo').setOrigin(0, 0);
@@ -36,7 +50,9 @@ class Play extends Phaser.Scene {
         keyUP = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.UP);
         keyDOWN = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.DOWN);
 
+        // creating the score
         this.score = 0;
+        this.scoreText = this.add.text(game.config.width/2, game.config.height/8, '0', menuConfig).setOrigin(0.5);
     }
 
     update() {
@@ -70,6 +86,9 @@ class Play extends Phaser.Scene {
 
     bossCollision(){
         this.score++;
+        this.cameras.main.shake(250, 0.0075); // for fun :)
+        this.bone.destroy();
+        this.scoreText.text = this.score;
         console.log(this.score);
     }
 
