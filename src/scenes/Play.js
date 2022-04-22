@@ -10,6 +10,10 @@ class Play extends Phaser.Scene {
         this.load.image('bone', './assets/bone.png');
         this.load.image('beam', './assets/beam.png');
         this.load.image('epicBackground', './assets/epicBackground.png');
+        // load audio
+        this.load.audio('attack', './assets/dogFire.wav');
+        this.load.audio('onHit', './assets/boneHit.wav');
+        this.load.audio('beamSFX', './assets/ufoBeam.wav');
     }
 
     create() {
@@ -85,6 +89,8 @@ class Play extends Phaser.Scene {
             player.body.position.y += 5;
         }
         if (Phaser.Input.Keyboard.JustDown(keyF)) {
+            // play Attack audio
+            this.sound.play('attack')
             // Creates the projectile
             let bone = new Bone(this, player.x, player.y, 'bone').setOrigin(0, 0);
             this.boneGroup.add(bone);
