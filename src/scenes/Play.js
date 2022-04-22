@@ -18,10 +18,6 @@ class Play extends Phaser.Scene {
         // adding the background
         this.background = this.add.tileSprite(0, 0, game.config.width, game.config.height, 'epicBackground').setOrigin(0, 0);
 
-        // creating the score
-        this.score = 0;
-        this.scoreText = this.add.text(game.config.width/2, game.config.height/8, '0', menuConfig).setOrigin(0.5);
-
         // menu text configuration
         let menuConfig = {
         fontFamily: 'Papyrus',
@@ -35,6 +31,10 @@ class Play extends Phaser.Scene {
         },
         fixedWidth: 0
         }
+
+        // creating the score
+        this.score = 0;
+        this.scoreText = this.add.text(game.config.width/2, game.config.height/8, '0', menuConfig).setOrigin(0.5);
 
         // Adding doggo
         // this.playerSprite = new Player(this, game.config.width/4, game.config.height/2, 'doggo').setOrigin(0, 0);
