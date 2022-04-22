@@ -9,10 +9,13 @@ class Play extends Phaser.Scene {
         this.load.image('evilCat', './assets/evilCat.png');
         this.load.image('bone', './assets/bone.png');
         this.load.image('beam', './assets/beam.png');
+        this.load.image('epicBackground', './assets/epicBackground.png');
     }
 
     create() {
         console.log("Now Playing");
+
+        this.background = this.add.tileSprite(0, 0, game.config.width, game.config.height, 'epicBackground').setOrigin(0, 0);
 
         // menu text configuration
         let menuConfig = {
@@ -64,6 +67,8 @@ class Play extends Phaser.Scene {
     update() {
         // console.log("Now Updating");
         // player.update();
+
+        this.background.tilePositionX += 8;
 
         // Player Movement
         if(keyLEFT.isDown) {
