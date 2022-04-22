@@ -15,24 +15,19 @@ class Bone extends Phaser.Physics.Arcade.Sprite {
 
     update() {
 
-        // creating movement using sinusodal movement
-        // this.numberOfTicks++
-        // this.y = (150 * Math.sin(this.numberOfTicks * 0.5 * Math.PI/40)) + game.config.height/3
-        // console.log("bone");
+        // check if it hits the boss
         this.scene.physics.add.collider(this, boss, this.boneCollision, null, this);
-            // console.log("hit");
-            // this.destroy(); 
-    
+
+        // if it goes off screen destroy it
         if (this.x > game.config.width){
-            console.log("boom");
             this.destroy();
         }
     }
 
+    // What happens when you get a hit!
     boneCollision() {
-        console.log("hit");
         this.scene.score++;
-        this.scene.cameras.main.shake(250, 0.0075);
+        this.scene.cameras.main.shake(250, 0.0075); // Pizass
         this.scene.scoreText.text = this.scene.score;
         this.destroy(); 
     }

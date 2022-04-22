@@ -85,18 +85,8 @@ class Play extends Phaser.Scene {
             // this.bone.setVelocityX(1800); // Zoom!
         }
 
+        // updating the boss
         boss.update();
-
-        // this.physics.world.collide(this.boss, this.bone, this.bossCollision, null, this);
     }
-
-    // bossCollision(){
-    //     this.score++;
-    //     this.cameras.main.shake(250, 0.0075); // for fun :)
-    //     this.bone.destroy();
-    //     this.scoreText.text = this.score;
-    //     console.log(this.score);
-    // }
-
 
 }
