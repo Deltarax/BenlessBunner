@@ -8,6 +8,7 @@ class Play extends Phaser.Scene {
         this.load.image('doggo', './assets/doggo.png');
         this.load.image('evilCat', './assets/evilCat.png');
         this.load.image('bone', './assets/bone.png');
+        this.load.image('beam', './assets/beam.png');
     }
 
     create() {
@@ -78,7 +79,6 @@ class Play extends Phaser.Scene {
             player.body.position.y += 5;
         }
         if (Phaser.Input.Keyboard.JustDown(keyF)) {
-            console.log("Fire!");
             // Creates the projectile
             let bone = new Bone(this, player.x, player.y, 'bone').setOrigin(0, 0);
             this.boneGroup.add(bone);
