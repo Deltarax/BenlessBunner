@@ -34,7 +34,7 @@ class Play extends Phaser.Scene {
         player.setCollideWorldBounds(true);
 
         //Adding boss
-        this.boss = new Boss(this, game.config.width - game.config.width/4, game.config.height/2, 'evilCat').setOrigin(0, 0);
+        boss = new Boss(this, game.config.width - game.config.width/4, game.config.height/2, 'evilCat').setOrigin(0, 0);
         // this.boss.setCollideWorldBounds(true);
 
         // white borders
@@ -53,6 +53,11 @@ class Play extends Phaser.Scene {
         // creating the score
         this.score = 0;
         this.scoreText = this.add.text(game.config.width/2, game.config.height/8, '0', menuConfig).setOrigin(0.5);
+
+        // bone group
+        this.boneGroup = this.add.group({
+            runChildUpdate: true    // make sure update runs on group children
+        });
     }
 
     update() {
@@ -75,22 +80,23 @@ class Play extends Phaser.Scene {
         if (Phaser.Input.Keyboard.JustDown(keyF)) {
             console.log("Fire!");
             // Creates the projectile
-            this.bone = this.physics.add.sprite(player.x, player.y, 'bone').setOrigin(0, 0);
-            this.bone.setVelocityX(1800); // Zoom!
+            let bone = new Bone(this, player.x, player.y, 'bone').setOrigin(0, 0);
+            this.boneGroup.add(bone);
+            // this.bone.setVelocityX(1800); // Zoom!
         }
 
-        this.boss.update();
+        boss.update();
 
-        this.physics.world.collide(this.boss, this.bone, this.bossCollision, null, this);
+        // this.physics.world.collide(this.boss, this.bone, this.bossCollision, null, this);
     }
 
-    bossCollision(){
-        this.score++;
-        this.cameras.main.shake(250, 0.0075); // for fun :)
-        this.bone.destroy();
-        this.scoreText.text = this.score;
-        console.log(this.score);
-    }
+    // bossCollision(){
+    //     this.score++;
+    //     this.cameras.main.shake(250, 0.0075); // for fun :)
+    //     this.bone.destroy();
+    //     this.scoreText.text = this.score;
+    //     console.log(this.score);
+    // }
 
 
 }
