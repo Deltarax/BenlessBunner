@@ -43,7 +43,7 @@ class Boss extends Phaser.Physics.Arcade.Sprite {
                 console.log("beam");
                 this.beam = this.scene.physics.add.sprite(0, this.y, 'beam').setOrigin(0, 0);
                 this.scene.physics.add.collider(this.beam, player, this.attackCollision, null, this);
-                this.scene.cameras.main.shake(1500, 0.025); // Pizass
+                // this.scene.cameras.main.shake(1500, 0.025); // Oomph
             } else {
                 this.attacking = false;
                 this.beam.destroy();

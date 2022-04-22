@@ -15,7 +15,12 @@ class Play extends Phaser.Scene {
     create() {
         console.log("Now Playing");
 
+        // adding the background
         this.background = this.add.tileSprite(0, 0, game.config.width, game.config.height, 'epicBackground').setOrigin(0, 0);
+
+        // creating the score
+        this.score = 0;
+        this.scoreText = this.add.text(game.config.width/2, game.config.height/8, '0', menuConfig).setOrigin(0.5);
 
         // menu text configuration
         let menuConfig = {
@@ -53,10 +58,6 @@ class Play extends Phaser.Scene {
         keyRIGHT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.RIGHT);
         keyUP = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.UP);
         keyDOWN = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.DOWN);
-
-        // creating the score
-        this.score = 0;
-        this.scoreText = this.add.text(game.config.width/2, game.config.height/8, '0', menuConfig).setOrigin(0.5);
 
         // bone group
         this.boneGroup = this.add.group({
