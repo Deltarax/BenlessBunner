@@ -11,6 +11,7 @@ class Boss extends Phaser.Physics.Arcade.Sprite {
         this.numberOfTicks = 0;
         this.movementTicks = 0;
         this.attacking = false;
+        this.dead = false;
     }
 
     // preload() {
@@ -41,12 +42,23 @@ class Boss extends Phaser.Physics.Arcade.Sprite {
                 this.attacking = true
                 console.log("beam");
                 this.beam = this.scene.physics.add.sprite(0, this.y, 'beam').setOrigin(0, 0);
+                this.scene.physics.add.collider(this.beam, player, this.attackCollision, null, this);
             } else {
                 this.attacking = false;
                 this.beam.destroy();
                 console.log("nobeam");
             }
         }
+
+    }
+
+    attackCollision(){
+        if(!this.dead){
+            console.log("dead");
+            this.dead = true;
+        }
+        // console.log("dead");
+
     }
 
 

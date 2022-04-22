@@ -35,7 +35,7 @@ class Play extends Phaser.Scene {
         player.setCollideWorldBounds(true);
 
         //Adding boss
-        boss = new Boss(this, game.config.width - game.config.width/4, game.config.height/2, 'evilCat').setOrigin(0, 0);
+        boss = new Boss(this, game.config.width - game.config.width/4, game.config.height/2, 'evilCat').setOrigin(0, 0.5);
         // this.boss.setCollideWorldBounds(true);
 
         // white borders
@@ -87,6 +87,10 @@ class Play extends Phaser.Scene {
 
         // updating the boss
         boss.update();
+
+        if (boss.dead) {
+            this.scoreText.text = "dead";
+        }
     }
 
 }
