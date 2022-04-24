@@ -6,10 +6,13 @@ class Play extends Phaser.Scene {
     preload() {
         // Load images/tile sprites
         this.load.image('doggo', './assets/doggo.png');
-        this.load.image('evilCat', './assets/evilCat.png');
-        this.load.image('bone', './assets/bone.png');
+        this.load.image('evilCat', './assets/cat.png');
+        this.load.image('bone', './assets/bone_n.png');
         this.load.image('beam', './assets/beam.png');
-        this.load.image('epicBackground', './assets/epicBackground.png');
+        this.load.image('epicBackground', './assets/page_bg.png');
+        this.load.image('clouds1', './assets/clouds_1.png');
+        this.load.image('clouds2', './assets/clouds_2.png');
+
         // load audio
         this.load.audio('attack', './assets/dogFire.wav');
         this.load.audio('onHit', './assets/boneHit.wav');
@@ -21,6 +24,8 @@ class Play extends Phaser.Scene {
 
         // adding the background
         this.background = this.add.tileSprite(0, 0, game.config.width, game.config.height, 'epicBackground').setOrigin(0, 0);
+        this.cloud2 = this.add.tileSprite(0, 0, game.config.width, game.config.height, 'clouds2').setOrigin(0, 0);
+        this.cloud1 = this.add.tileSprite(0, 0, game.config.width, game.config.height, 'clouds1').setOrigin(0, 0);
 
         // menu text configuration
         let menuConfig = {
@@ -74,6 +79,8 @@ class Play extends Phaser.Scene {
         // player.update();
 
         this.background.tilePositionX += 8;
+        this.cloud2.tilePositionX += 4;
+        this.cloud1.tilePositionX += 8;
 
         // Player Movement
         if(keyLEFT.isDown) {
