@@ -106,8 +106,7 @@ class Play extends Phaser.Scene {
 
         // updating the boss
         boss.update();
-
-        if (boss.dead) {
+        if (boss.playerDead) {
             this.scoreText.text = "dead";
         }
     }

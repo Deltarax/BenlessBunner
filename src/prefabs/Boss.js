@@ -11,16 +11,9 @@ class Boss extends Phaser.Physics.Arcade.Sprite {
         this.numberOfTicks = 0;
         this.movementTicks = 0;
         this.attacking = false;
-        this.dead = false;
+        this.playerDead = false;
     }
 
-    // preload() {
-    //     // Load images/tile sprites
-    //     // this.load.image('doggo', './assets/doggo.png');
-    //     // this.load.image('evilCat', './assets/evilCat.png');
-    //     // this.load.image('bone', './assets/bone.png');
-    //     // this.load.image('beam', './assets/beam.png');
-    // }
 
     update() {
 
@@ -29,23 +22,25 @@ class Boss extends Phaser.Physics.Arcade.Sprite {
         if (!this.attacking){
             this.movementTicks++;
             if (this.scene.score > 20){
-                this.y = (150 * Math.sin(this.movementTicks * 0.5 * Math.PI/20)) + game.config.height/3
+                this.y = (150 * Math.sin(this.movementTicks * 0.5 * Math.PI/20)) + game.config.height/2
             } else {
-                this.y = (150 * Math.sin(this.movementTicks * 0.5 * Math.PI/40)) + game.config.height/3
+                this.y = (150 * Math.sin(this.movementTicks * 0.5 * Math.PI/40)) + game.config.height/2
             }
         }
 
         // console.log(this.numberOfTicks);
 
-        if ((this.numberOfTicks % 100) == 0){
-            if (!this.attacking){
+        if (!this.attacking){
+            if ((this.numberOfTicks % 400) == 0){
                 this.attacking = true
                 console.log("beam");
-                //this.sound.play('beamSFX');
+                this.scene.sound.play('beamSFX');
                 this.beam = this.scene.physics.add.sprite(0, this.y, 'beam').setOrigin(0, 0);
                 this.scene.physics.add.collider(this.beam, player, this.attackCollision, null, this);
                 // this.scene.cameras.main.shake(1500, 0.025); // Oomph
-            } else {
+            }
+        } else {
+            if ((this.numberOfTicks % 200) == 0){
                 this.attacking = false;
                 this.beam.destroy();
                 console.log("nobeam");
@@ -55,9 +50,9 @@ class Boss extends Phaser.Physics.Arcade.Sprite {
     }
 
     attackCollision(){
-        if(!this.dead){
+        if(!this.playerDead){
             console.log("dead");
-            this.dead = true;
+            this.playerDead = true;
         }
         // console.log("dead");
 
