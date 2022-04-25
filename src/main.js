@@ -23,4 +23,5 @@ let keyF, keyR, keyLEFT, keyRIGHT, keyUP, keyDOWN;
 // define globals
 let player = null;
 let boss = null;
+let score = 0;
 const playerVelocity = 150;

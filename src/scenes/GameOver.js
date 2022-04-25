@@ -27,15 +27,11 @@ class GameOver extends Phaser.Scene {
       this.background = this.add.tileSprite(0, 0, game.config.width, game.config.height, 'epicBackground').setOrigin(0, 0);
         
       // show menu text
-      this.add.text(game.config.width/2, game.config.height/2 - borderUISize - borderPadding*6,'GameOver', menuConfig).setOrigin(0.5);
-      this.add.text(game.config.width/2, game.config.height/2, 'You scored:', menuConfig).setOrigin(0.5);
+      this.add.text(game.config.width/2, game.config.height/2 - borderUISize - borderPadding*6,'Game Over!', menuConfig).setOrigin(0.5);
+      this.add.text(game.config.width/2, game.config.height/2, `Successful hits: ${score}`, menuConfig).setOrigin(0.5);
       this.add.text(game.config.width/2, game.config.height/2 + borderUISize + borderPadding*6, 'Press fire to play again!', menuConfig).setOrigin(0.5);
 
     // define keys
-    //   keyLEFT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.LEFT);
-    //   keyRIGHT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.RIGHT);
-    //   keyUP = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.UP);
-    //   keyDOWN = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.DOWN);
       keyF = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.F);
     }
 

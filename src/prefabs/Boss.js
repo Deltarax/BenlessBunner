@@ -12,6 +12,7 @@ class Boss extends Phaser.Physics.Arcade.Sprite {
         this.movementTicks = 0;
         this.attacking = false; // flag for checking attacks
         this.playerDead = false;
+        this.faster = false;
     }
 
 
@@ -20,12 +21,17 @@ class Boss extends Phaser.Physics.Arcade.Sprite {
         // creating movement using sinusodal movement
         this.numberOfTicks++;
         this.movementTicks++;
-        if (this.scene.score > 20){
+        if (this.faster){
             this.y = (150 * Math.sin(this.movementTicks * 0.5 * Math.PI/20)) + game.config.height/2
         } else {
             this.y = (150 * Math.sin(this.movementTicks * 0.5 * Math.PI/40)) + game.config.height/2
         }
 
+        if (score > 20){
+            if(!this.attacking){
+                this.faster = true;
+            }
+        }
 
         // console.log(this.numberOfTicks);
 
@@ -55,19 +61,32 @@ class Boss extends Phaser.Physics.Arcade.Sprite {
         console.log("beam 1 attack");
 
         // add in the portal attack indicator
-        this.portal = this.scene.add.sprite(this.x-20, game.config.height/4, 'portal');
+        this.portal = this.scene.add.sprite(this.x-20, game.config.height/4 - 20, 'portal');
+        if(this.faster){
+            // beam 2
+            this.portal2 = this.scene.add.sprite(this.x-20, game.config.height/2, 'portal');
+        }
 
         // start the attack after 1 seconds
         this.clock = this.scene.time.delayedCall(1000, () => {
 
             //create the beam and check for collisions
-            this.beam = this.scene.physics.add.sprite(0, game.config.height/4, 'bigBeam').setOrigin(0, 0.5);
+            this.beam = this.scene.physics.add.sprite(0, game.config.height/4 - 20, 'bigBeam').setOrigin(0, 0.5);
             this.scene.physics.add.collider(this.beam, player, this.attackCollision, null, this);
+
+            if(this.faster){
+                this.beam2 = this.scene.physics.add.sprite(0, game.config.height/2, 'bigBeam').setOrigin(0, 0.5);
+                this.scene.physics.add.collider(this.beam2, player, this.attackCollision, null, this);
+            }
 
             // end the attack after a 1 second delay
             this.clock2 = this.scene.time.delayedCall(1000, () => {
                 this.beam.destroy();
                 this.portal.destroy();
+                if(this.faster){
+                    this.beam2.destroy();
+                    this.portal2.destroy();
+                }
                 this.attacking = false;
             }, null, this);
         }, null, this);
@@ -79,6 +98,10 @@ class Boss extends Phaser.Physics.Arcade.Sprite {
 
         // add in the portal attack indicator
         this.portal = this.scene.add.sprite(this.x-20, game.config.height/2, 'portal');
+        if(this.faster){
+            // beam 3
+            this.portal2 = this.scene.add.sprite(this.x-20, game.config.height/4 + game.config.height/2 + 20, 'portal');
+        }
 
         // start the attack after 1 seconds
         this.clock = this.scene.time.delayedCall(1000, () => {
@@ -87,10 +110,19 @@ class Boss extends Phaser.Physics.Arcade.Sprite {
             this.beam = this.scene.physics.add.sprite(0, game.config.height/2, 'bigBeam').setOrigin(0, 0.5);
             this.scene.physics.add.collider(this.beam, player, this.attackCollision, null, this);
 
+            if(this.faster){
+                this.beam2 = this.scene.physics.add.sprite(0, game.config.height/4 + game.config.height/2 + 20, 'bigBeam').setOrigin(0, 0.5);
+                this.scene.physics.add.collider(this.beam2, player, this.attackCollision, null, this);
+            }
+
             // end the attack after a 1 second delay
             this.clock2 = this.scene.time.delayedCall(1000, () => {
                 this.beam.destroy();
                 this.portal.destroy();
+                if(this.faster){
+                    this.beam2.destroy();
+                    this.portal2.destroy();
+                }
                 this.attacking = false;
             }, null, this);
         }, null, this);
@@ -101,19 +133,33 @@ class Boss extends Phaser.Physics.Arcade.Sprite {
         console.log("beam 3 attack");
 
         // add in the portal attack indicator
-        this.portal = this.scene.add.sprite(this.x-20, game.config.height/4 + game.config.height/2, 'portal');
+        this.portal = this.scene.add.sprite(this.x-20, game.config.height/4 + game.config.height/2 + 20, 'portal');
+
+        if(this.faster){
+            // beam 1
+            this.portal2 = this.scene.add.sprite(this.x-20, game.config.height/4 - 20, 'portal');
+        }
 
         // start the attack after 1 seconds
         this.clock = this.scene.time.delayedCall(1000, () => {
 
             //create the beam and check for collisions
-            this.beam = this.scene.physics.add.sprite(0, game.config.height/4 + game.config.height/2, 'bigBeam').setOrigin(0, 0.5);
+            this.beam = this.scene.physics.add.sprite(0, game.config.height/4 + game.config.height/2 + 20, 'bigBeam').setOrigin(0, 0.5);
             this.scene.physics.add.collider(this.beam, player, this.attackCollision, null, this);
+
+            if(this.faster){
+                this.beam2 = this.scene.physics.add.sprite(0, game.config.height/4 - 20, 'bigBeam').setOrigin(0, 0.5);
+                this.scene.physics.add.collider(this.beam2, player, this.attackCollision, null, this);
+            }
 
             // end the attack after a 1 second delay
             this.clock2 = this.scene.time.delayedCall(1000, () => {
                 this.beam.destroy();
                 this.portal.destroy();
+                if(this.faster){
+                    this.beam2.destroy();
+                    this.portal2.destroy();
+                }
                 this.attacking = false;
             }, null, this);
         }, null, this);
