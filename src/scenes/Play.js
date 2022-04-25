@@ -33,7 +33,7 @@ class Play extends Phaser.Scene {
         let menuConfig = {
         fontFamily: 'Papyrus',
         fontSize: '28px',
-        backgroundColor: '#FFFFFF',
+        // backgroundColor: '#FFFFFF',
         color: '#0000FF',
         align: 'right',
         padding: {
@@ -110,6 +110,13 @@ class Play extends Phaser.Scene {
         boss.update();
         if (boss.playerDead) {
             this.scoreText.text = "dead";
+            this.cameras.main.shake(2000, 0.0075);
+            player.setCollideWorldBounds(false);
+            player.setVelocityY(800); // Zoom!
+            this.clock = this.time.delayedCall(2000, () => {
+                this.scene.start("gameOverScene");
+            }, null, this);
+            // this.scene.start("gameOverScene");
         }
     }
 
