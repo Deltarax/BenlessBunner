@@ -46,8 +46,6 @@ class Boss extends Phaser.Physics.Arcade.Sprite {
                     console.error("Trying to make a beam 4 attack?");
                 }
             }
-        } else {
-            this.attacking = false;
         }
 
     }
@@ -70,6 +68,7 @@ class Boss extends Phaser.Physics.Arcade.Sprite {
             this.clock2 = this.scene.time.delayedCall(1000, () => {
                 this.beam.destroy();
                 this.portal.destroy();
+                this.attacking = false;
             }, null, this);
         }, null, this);
     }
@@ -92,6 +91,7 @@ class Boss extends Phaser.Physics.Arcade.Sprite {
             this.clock2 = this.scene.time.delayedCall(1000, () => {
                 this.beam.destroy();
                 this.portal.destroy();
+                this.attacking = false;
             }, null, this);
         }, null, this);
     }
@@ -114,6 +114,7 @@ class Boss extends Phaser.Physics.Arcade.Sprite {
             this.clock2 = this.scene.time.delayedCall(1000, () => {
                 this.beam.destroy();
                 this.portal.destroy();
+                this.attacking = false;
             }, null, this);
         }, null, this);
     }
