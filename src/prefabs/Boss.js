@@ -11,8 +11,8 @@ class Boss extends Phaser.Physics.Arcade.Sprite {
         this.numberOfTicks = 0;
         this.movementTicks = 0;
         this.attacking = false; // flag for checking attacks
-        this.playerDead = false;
-        this.faster = false;
+        this.playerDead = false; // flag for checking if you die
+        this.faster = false; // flag for if game has become more difficult
     }
 
 
@@ -62,6 +62,8 @@ class Boss extends Phaser.Physics.Arcade.Sprite {
 
         // add in the portal attack indicator
         this.portal = this.scene.add.sprite(this.x-20, game.config.height/4 - 20, 'portal');
+
+        // secondary beam for when game more difficult
         if(this.faster){
             // beam 2
             this.portal2 = this.scene.add.sprite(this.x-20, game.config.height/2, 'portal');
@@ -98,6 +100,8 @@ class Boss extends Phaser.Physics.Arcade.Sprite {
 
         // add in the portal attack indicator
         this.portal = this.scene.add.sprite(this.x-20, game.config.height/2, 'portal');
+
+        // secondary beam for when game more difficult
         if(this.faster){
             // beam 3
             this.portal2 = this.scene.add.sprite(this.x-20, game.config.height/4 + game.config.height/2 + 20, 'portal');
@@ -135,6 +139,7 @@ class Boss extends Phaser.Physics.Arcade.Sprite {
         // add in the portal attack indicator
         this.portal = this.scene.add.sprite(this.x-20, game.config.height/4 + game.config.height/2 + 20, 'portal');
 
+        // secondary beam for when game more difficult
         if(this.faster){
             // beam 1
             this.portal2 = this.scene.add.sprite(this.x-20, game.config.height/4 - 20, 'portal');
