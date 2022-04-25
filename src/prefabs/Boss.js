@@ -34,10 +34,10 @@ class Boss extends Phaser.Physics.Arcade.Sprite {
             if ((this.numberOfTicks % 400) == 0){
                 this.attacking = true
                 console.log("beam");
-                this.scene.sound.play('beamSFX');
+                // this.scene.sound.play('beamSFX');
                 this.beam = this.scene.physics.add.sprite(0, this.y, 'beam').setOrigin(0, 0);
                 this.scene.physics.add.collider(this.beam, player, this.attackCollision, null, this);
-                // this.scene.cameras.main.shake(1500, 0.025); // Oomph
+
             }
         } else {
             if ((this.numberOfTicks % 200) == 0){
