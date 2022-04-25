@@ -10,7 +10,7 @@ class Boss extends Phaser.Physics.Arcade.Sprite {
         this.moveSpeed = 1;
         this.numberOfTicks = 0;
         this.movementTicks = 0;
-        this.attacking = false;
+        this.attacking = false; // flag for checking attacks
         this.playerDead = false;
     }
 
@@ -19,42 +19,55 @@ class Boss extends Phaser.Physics.Arcade.Sprite {
 
         // creating movement using sinusodal movement
         this.numberOfTicks++;
-        if (!this.attacking){
-            this.movementTicks++;
-            if (this.scene.score > 20){
-                this.y = (150 * Math.sin(this.movementTicks * 0.5 * Math.PI/20)) + game.config.height/2
-            } else {
-                this.y = (150 * Math.sin(this.movementTicks * 0.5 * Math.PI/40)) + game.config.height/2
-            }
+        this.movementTicks++;
+        if (this.scene.score > 20){
+            this.y = (150 * Math.sin(this.movementTicks * 0.5 * Math.PI/20)) + game.config.height/2
+        } else {
+            this.y = (150 * Math.sin(this.movementTicks * 0.5 * Math.PI/40)) + game.config.height/2
         }
+
 
         // console.log(this.numberOfTicks);
 
+        // Check if currently attacking, and if not start a random attack
         if (!this.attacking){
-            if ((this.numberOfTicks % 400) == 0){
+            if ((this.numberOfTicks % 200) == 0){
                 this.attacking = true
-                console.log("beam");
-                // this.scene.sound.play('beamSFX');
-                this.beam = this.scene.physics.add.sprite(0, this.y, 'beam').setOrigin(0, 0);
-                this.scene.physics.add.collider(this.beam, player, this.attackCollision, null, this);
-
+                this.beam1Attack();
             }
         } else {
-            if ((this.numberOfTicks % 200) == 0){
-                this.attacking = false;
-                this.beam.destroy();
-                console.log("nobeam");
-            }
+            this.attacking = false;
         }
 
     }
 
+    // Beam 1 attack, top third of the screen
+    beam1Attack(){
+        console.log("beam 1 attack");
+
+        // add in the portal attack indicator
+        this.portal = this.scene.add.sprite(this.x-20, game.config.height/4, 'portal');
+
+        // start the attack after 1 seconds
+        this.clock = this.scene.time.delayedCall(1000, () => {
+
+            //create the beam and check for collisions
+            this.beam = this.scene.physics.add.sprite(0, game.config.height/4, 'bigBeam').setOrigin(0, 0.5);
+            this.scene.physics.add.collider(this.beam, player, this.attackCollision, null, this);
+
+            // end the attack after a 1 second delay
+            this.clock2 = this.scene.time.delayedCall(1000, () => {
+                this.beam.destroy();
+                this.portal.destroy();
+            }, null, this);
+        }, null, this);
+    }
+
+    // check if the player is dead and flag it
     attackCollision(){
         if(!this.playerDead){
-            console.log("dead");
             this.playerDead = true;
         }
-        // console.log("dead");
 
     }
 
