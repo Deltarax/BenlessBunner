@@ -174,6 +174,12 @@ class Boss extends Phaser.Physics.Arcade.Sprite {
     attackCollision(){
         if(!this.playerDead){
             this.playerDead = true;
+            if (this.beam){
+                this.beam.body = false;
+            }
+            if (this.beam2){
+                this.beam2.body = false;
+            }
         }
 
     }

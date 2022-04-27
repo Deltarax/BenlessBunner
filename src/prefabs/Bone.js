@@ -9,7 +9,7 @@ class Bone extends Phaser.Physics.Arcade.Sprite {
         // this.setImmovable();
         this.checkWorldBounds = true;
         this.outOfBoundsKill = true;
-        this.setVelocityX(1800);
+        this.setVelocityX(800);
         
     }
 
