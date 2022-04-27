@@ -113,7 +113,8 @@ class Play extends Phaser.Scene {
             // this.cameras.main.fadeOut(6000, 0, 0, 0);    // trying to get a fadeout to work but doesnt
             this.cameras.main.shake(2000, 0.0075);
             player.setCollideWorldBounds(false);
-            player.setVelocityY(800); // Zoom!
+            player.body.position.y += 5;  //falls out of the sky
+            player.body.position.x -= 3;  //falls out of the sky
             this.clock = this.time.delayedCall(2000, () => {
                 this.scene.start("gameOverScene");
             }, null, this);
