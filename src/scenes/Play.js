@@ -19,10 +19,19 @@ class Play extends Phaser.Scene {
         this.load.audio('attack', './assets/dogFire.wav');
         this.load.audio('onHit', './assets/boneHit.wav');
         this.load.audio('beamSFX', './assets/ufoBeam.wav');
+        this.load.audio('BGM', './assets/Bens_Dream.mp3');
     }
 
     create() {
         console.log("Now Playing");
+
+        // adding the bgm
+        this.BGM = this.sound.add('BGM', {volume: 0.15});
+        this.BGM.setLoop(true);
+        this.BGM.play();
+        this.onHit = this.sound.add('onHit', {volume: 0.2});
+        this.attackSFX = this.sound.add('attack', {volume: 0.4});
+
 
         // adding the background
         this.background = this.add.tileSprite(0, 0, game.config.width, game.config.height, 'epicBackground').setOrigin(0, 0);
@@ -99,7 +108,7 @@ class Play extends Phaser.Scene {
         }
         if (Phaser.Input.Keyboard.JustDown(keyF)) {
             // play Attack audio
-            this.sound.play('attack')
+            this.attackSFX.play();
             // Creates the projectile
             let bone = new Bone(this, player.x, player.y, 'bone').setOrigin(0, 0);
             this.boneGroup.add(bone);
@@ -117,6 +126,7 @@ class Play extends Phaser.Scene {
             player.body.position.x -= 3;  //falls out of the sky
             this.clock = this.time.delayedCall(2000, () => {
                 this.scene.start("gameOverScene");
+                this.BGM.stop();
             }, null, this);
             // this.scene.start("gameOverScene");
         }

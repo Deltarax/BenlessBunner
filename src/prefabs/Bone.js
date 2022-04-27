@@ -28,7 +28,7 @@ class Bone extends Phaser.Physics.Arcade.Sprite {
     boneCollision() {
         score++;
         this.scene.cameras.main.shake(250, 0.0075); // Pizass
-        this.scene.sound.play('onHit');
+        this.scene.onHit.play();
         this.scene.scoreText.text = score;
         this.destroy(); 
     }
