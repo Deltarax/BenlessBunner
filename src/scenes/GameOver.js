@@ -4,7 +4,7 @@ class GameOver extends Phaser.Scene {
     }
 
     preload() {
-      this.load.image('epicBackground', './assets/page_bg.png');
+      this.load.image('epicBackgroundEnd', './assets/pageLight2.png');
     }
 
     create() {
@@ -24,7 +24,7 @@ class GameOver extends Phaser.Scene {
       }
 
       // add background
-      this.background = this.add.tileSprite(0, 0, game.config.width, game.config.height, 'epicBackground').setOrigin(0, 0);
+      this.background = this.add.tileSprite(0, 0, game.config.width, game.config.height, 'epicBackgroundEnd').setOrigin(0, 0);
         
       // show menu text
       this.add.text(game.config.width/2, game.config.height/2 - borderUISize - borderPadding*6,'Game Over!', menuConfig).setOrigin(0.5);
