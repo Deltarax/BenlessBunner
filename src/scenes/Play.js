@@ -3,27 +3,16 @@ class Play extends Phaser.Scene {
         super("playScene");
     }
 
-    preload() {
-        // Load images/tile sprites
-        this.load.image('doggo', './assets/doggo_n.png');
-        this.load.image('evilCat', './assets/cat.png');
-        this.load.image('bone', './assets/bone_n.png');
-        this.load.image('beam', './assets/beam.png');
-        this.load.image('epicBackground', './assets/page_bg.png');
-        this.load.image('clouds1', './assets/clouds_1.png');
-        this.load.image('clouds2', './assets/clouds_2.png');
-        this.load.image('bigBeam', './assets/biggerBeam.png');
-        this.load.image('portal', './assets/portal.png');
-        this.load.image('hairball', './assets/hairball.png');
-
-        // load audio
-        this.load.audio('attack', './assets/dogFire.wav');
-        this.load.audio('onHit', './assets/boneHit.wav');
-        this.load.audio('beamSFX', './assets/ufoBeam.wav');
-    }
-
     create() {
         console.log("Now Playing");
+
+        // adding the bgm
+        this.BGM = this.sound.add('BGM', {volume: 0.15});
+        this.BGM.setLoop(true);
+        this.BGM.play();
+        this.onHit = this.sound.add('onHit', {volume: 0.2});
+        this.attackSFX = this.sound.add('attack', {volume: 0.4});
+
 
         // adding the background
         this.background = this.add.tileSprite(0, 0, game.config.width, game.config.height, 'epicBackground').setOrigin(0, 0);
@@ -46,7 +35,7 @@ class Play extends Phaser.Scene {
 
         // creating the score
         score = 0;
-        this.scoreText = this.add.text(game.config.width/2, game.config.height/8, '0', menuConfig).setOrigin(0.5);
+        this.scoreText = this.add.text(game.config.width/16, game.config.height/12, 'Score: ' + score, menuConfig).setOrigin(0, 0);
 
         // Adding doggo
         // this.playerSprite = new Player(this, game.config.width/4, game.config.height/2, 'doggo').setOrigin(0, 0);
@@ -100,7 +89,7 @@ class Play extends Phaser.Scene {
         }
         if (Phaser.Input.Keyboard.JustDown(keyF)) {
             // play Attack audio
-            this.sound.play('attack')
+            this.attackSFX.play();
             // Creates the projectile
             let bone = new Bone(this, player.x, player.y, 'bone').setOrigin(0, 0);
             this.boneGroup.add(bone);
@@ -118,6 +107,7 @@ class Play extends Phaser.Scene {
             player.body.position.x -= 3;  //falls out of the sky
             this.clock = this.time.delayedCall(2000, () => {
                 this.scene.start("gameOverScene");
+                this.BGM.stop();
             }, null, this);
             // this.scene.start("gameOverScene");
         }

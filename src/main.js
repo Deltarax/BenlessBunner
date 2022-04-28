@@ -8,7 +8,11 @@ let config = {
         default: 'arcade',
         arcade: { debug: true }
     },
-    scene: [ Menu, Play, GameOver ]
+    fps: {
+        target: 60,
+        forceSetTimeOut: true
+    }, 
+    scene: [ Load, Menu, Play, GameOver ]
 }
 
 let game = new Phaser.Game(config);
