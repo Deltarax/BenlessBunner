@@ -10,6 +10,7 @@ class Hairball extends Phaser.Physics.Arcade.Sprite {
         this.checkWorldBounds = true;
         // this.outOfBoundsKill = true;
         this.setVelocityX(-400);
+        this.body.setCircle(15);
         
     }
 
