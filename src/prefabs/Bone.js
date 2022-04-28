@@ -10,6 +10,13 @@ class Bone extends Phaser.Physics.Arcade.Sprite {
         this.checkWorldBounds = true;
         this.outOfBoundsKill = true;
         this.setVelocityX(800);
+
+        this.scene.tweens.add({
+            targets: [this],
+            angle: {from: 0, to: 359},
+            duration: 250,
+            loop: -1 
+        })
         
     }
 
