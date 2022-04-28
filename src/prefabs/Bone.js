@@ -15,7 +15,7 @@ class Bone extends Phaser.Physics.Arcade.Sprite {
             targets: [this],
             angle: {from: 0, to: 359},
             duration: 250,
-            loop: -1 
+            loop: -1, 
         })
         
     }

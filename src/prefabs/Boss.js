@@ -77,23 +77,45 @@ class Boss extends Phaser.Physics.Arcade.Sprite {
         console.log("beam 1 attack");
 
         // add in the portal attack indicator
-        this.portal = this.scene.add.sprite(this.x-20, game.config.height/4 - 20, 'portal');
+        this.portal = this.scene.add.sprite(this.x-20, game.config.height/4 - 20, 'portal').setAlpha(0);
+        this.scene.tweens.add({
+            targets: [this.portal],
+            alpha: 1,
+            scale: {from: 0, to: 1},
+            duration: 250, 
+        })
 
         // secondary beam for when game more difficult
         if(this.faster){
             // beam 2
-            this.portal2 = this.scene.add.sprite(this.x-20, game.config.height/2, 'portal');
+            this.portal2 = this.scene.add.sprite(this.x-20, game.config.height/2, 'portal').setAlpha(0);
+            this.scene.tweens.add({
+                targets: [this.portal2],
+                alpha: 1,
+                scale: {from: 0, to: 1},
+                duration: 250, 
+            })
         }
 
         // start the attack after 1 seconds
         this.clock = this.scene.time.delayedCall(1000, () => {
 
             //create the beam and check for collisions
-            this.beam = this.scene.physics.add.sprite(0, game.config.height/4 - 20, 'bigBeam').setOrigin(0, 0.5);
+            this.beam = this.scene.physics.add.sprite(0, game.config.height/4 - 20, 'bigBeam').setOrigin(0, 0.5).setAlpha(0);
+            this.scene.tweens.add({
+                targets: [this.beam],
+                alpha: 1,
+                duration: 50, 
+            });
             this.scene.physics.add.collider(this.beam, player, this.attackCollision, null, this);
 
             if(this.faster){
-                this.beam2 = this.scene.physics.add.sprite(0, game.config.height/2, 'bigBeam').setOrigin(0, 0.5);
+                this.beam2 = this.scene.physics.add.sprite(0, game.config.height/2, 'bigBeam').setOrigin(0, 0.5).setAlpha(0);
+                this.scene.tweens.add({
+                    targets: [this.beam2],
+                    alpha: 1,
+                    duration: 50, 
+                });
                 this.scene.physics.add.collider(this.beam2, player, this.attackCollision, null, this);
             }
 
@@ -115,23 +137,45 @@ class Boss extends Phaser.Physics.Arcade.Sprite {
         console.log("beam 2 attack");
 
         // add in the portal attack indicator
-        this.portal = this.scene.add.sprite(this.x-20, game.config.height/2, 'portal');
+        this.portal = this.scene.add.sprite(this.x-20, game.config.height/2, 'portal').setAlpha(0);
+        this.scene.tweens.add({
+            targets: [this.portal],
+            alpha: 1,
+            scale: {from: 0, to: 1},
+            duration: 250, 
+        })
 
         // secondary beam for when game more difficult
         if(this.faster){
             // beam 3
-            this.portal2 = this.scene.add.sprite(this.x-20, game.config.height/4 + game.config.height/2 + 20, 'portal');
+            this.portal2 = this.scene.add.sprite(this.x-20, game.config.height/4 + game.config.height/2 + 20, 'portal').setAlpha(0);
+            this.scene.tweens.add({
+                targets: [this.portal2],
+                alpha: 1,
+                scale: {from: 0, to: 1},
+                duration: 250, 
+            })
         }
 
         // start the attack after 1 seconds
         this.clock = this.scene.time.delayedCall(1000, () => {
 
             //create the beam and check for collisions
-            this.beam = this.scene.physics.add.sprite(0, game.config.height/2, 'bigBeam').setOrigin(0, 0.5);
+            this.beam = this.scene.physics.add.sprite(0, game.config.height/2, 'bigBeam').setOrigin(0, 0.5).setAlpha(0);
+            this.scene.tweens.add({
+                targets: [this.beam],
+                alpha: 1,
+                duration: 50, 
+            });
             this.scene.physics.add.collider(this.beam, player, this.attackCollision, null, this);
 
             if(this.faster){
-                this.beam2 = this.scene.physics.add.sprite(0, game.config.height/4 + game.config.height/2 + 20, 'bigBeam').setOrigin(0, 0.5);
+                this.beam2 = this.scene.physics.add.sprite(0, game.config.height/4 + game.config.height/2 + 20, 'bigBeam').setOrigin(0, 0.5).setAlpha(0);
+                this.scene.tweens.add({
+                    targets: [this.beam2],
+                    alpha: 1,
+                    duration: 50, 
+                });
                 this.scene.physics.add.collider(this.beam2, player, this.attackCollision, null, this);
             }
 
@@ -153,23 +197,45 @@ class Boss extends Phaser.Physics.Arcade.Sprite {
         console.log("beam 3 attack");
 
         // add in the portal attack indicator
-        this.portal = this.scene.add.sprite(this.x-20, game.config.height/4 + game.config.height/2 + 20, 'portal');
+        this.portal = this.scene.add.sprite(this.x-20, game.config.height/4 + game.config.height/2 + 20, 'portal').setAlpha(0);
+        this.scene.tweens.add({
+            targets: [this.portal],
+            alpha: 1,
+            scale: {from: 0, to: 1},
+            duration: 250, 
+        })
 
         // secondary beam for when game more difficult
         if(this.faster){
             // beam 1
-            this.portal2 = this.scene.add.sprite(this.x-20, game.config.height/4 - 20, 'portal');
+            this.portal2 = this.scene.add.sprite(this.x-20, game.config.height/4 - 20, 'portal').setAlpha(0);
+            this.scene.tweens.add({
+                targets: [this.portal2],
+                alpha: 1,
+                scale: {from: 0, to: 1},
+                duration: 250, 
+            })
         }
 
         // start the attack after 1 seconds
         this.clock = this.scene.time.delayedCall(1000, () => {
 
             //create the beam and check for collisions
-            this.beam = this.scene.physics.add.sprite(0, game.config.height/4 + game.config.height/2 + 20, 'bigBeam').setOrigin(0, 0.5);
+            this.beam = this.scene.physics.add.sprite(0, game.config.height/4 + game.config.height/2 + 20, 'bigBeam').setOrigin(0, 0.5).setAlpha(0);
+            this.scene.tweens.add({
+                targets: [this.beam],
+                alpha: 1,
+                duration: 50, 
+            });
             this.scene.physics.add.collider(this.beam, player, this.attackCollision, null, this);
 
             if(this.faster){
-                this.beam2 = this.scene.physics.add.sprite(0, game.config.height/4 - 20, 'bigBeam').setOrigin(0, 0.5);
+                this.beam2 = this.scene.physics.add.sprite(0, game.config.height/4 - 20, 'bigBeam').setOrigin(0, 0.5).setAlpha(0);
+                this.scene.tweens.add({
+                    targets: [this.beam2],
+                    alpha: 1,
+                    duration: 50, 
+                });
                 this.scene.physics.add.collider(this.beam2, player, this.attackCollision, null, this);
             }
 
