@@ -10,11 +10,24 @@ class GameOver extends Phaser.Scene {
     create() {
 
       // menu text configuration
-      let menuConfig = {
+      let titleConfig = {
         fontFamily: 'Archistico_Bold',
-        fontSize: '64px',
+        fontSize: '85px',
         // backgroundColor: '#FFFFFF',
         color: '#0000FF',
+        align: 'right',
+        padding: {
+            top: 5,
+            bottom: 5,
+        },
+        fixedWidth: 0
+      }
+
+      let menuConfig = {
+        fontFamily: 'ShortStack',
+        fontSize: '32px',
+        // backgroundColor: '#FFFFFF',
+        color: '#5555FF',
         align: 'right',
         padding: {
             top: 5,
@@ -27,9 +40,9 @@ class GameOver extends Phaser.Scene {
       this.background = this.add.tileSprite(0, 0, game.config.width, game.config.height, 'epicBackgroundEnd').setOrigin(0, 0);
         
       // show menu text
-      this.add.text(game.config.width/2, game.config.height/2 - borderUISize - borderPadding*6,'Game Over!', menuConfig).setOrigin(0.5);
-      this.add.text(game.config.width/2, game.config.height/2, `Successful hits: ${score}`, menuConfig).setOrigin(0.5);
-      this.add.text(game.config.width/2, game.config.height/2 + borderUISize + borderPadding*6, 'Press fire to play again!', menuConfig).setOrigin(0.5);
+      this.add.text(game.config.width/2, game.config.height/2 - 100,'Game Over!', titleConfig).setOrigin(0.5);
+      this.add.text(game.config.width/2, game.config.height/2 + 41, `Successful hits: ${score}`, menuConfig).setOrigin(0.5);
+      this.add.text(game.config.width/2, game.config.height/2 + 105, 'Press fire to play again!', menuConfig).setOrigin(0.5);
 
     // define keys
       keyF = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.F);

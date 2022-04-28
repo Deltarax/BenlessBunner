@@ -22,7 +22,7 @@ class Play extends Phaser.Scene {
         // menu text configuration
         let menuConfig = {
             fontFamily: 'Archistico_Bold',
-            fontSize: '32px',
+            fontSize: '64px',
             // backgroundColor: '#FFFFFF',
             color: '#0000FF',
             align: 'right',

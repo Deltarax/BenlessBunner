@@ -36,7 +36,7 @@ class Bone extends Phaser.Physics.Arcade.Sprite {
         score++;
         this.scene.cameras.main.shake(250, 0.0075); // Pizass
         this.scene.onHit.play();
-        this.scene.scoreText.text = score;
+        this.scene.scoreText.text = `Score: ${score}`;
 
         // rotates the cat on a hit
         this.scene.tweens.add({
