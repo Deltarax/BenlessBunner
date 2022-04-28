@@ -284,6 +284,12 @@ class Boss extends Phaser.Physics.Arcade.Sprite {
             if (this.beam2){
                 this.beam2.body = false;
             }
+            this.scene.tweens.add({
+                targets: [player],
+                angle: {from: 0, to: 359},
+                duration: 250,
+                loop: -1, 
+            })
         }
 
     }

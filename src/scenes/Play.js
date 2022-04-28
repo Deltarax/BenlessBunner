@@ -39,7 +39,7 @@ class Play extends Phaser.Scene {
 
         // Adding doggo
         // this.playerSprite = new Player(this, game.config.width/4, game.config.height/2, 'doggo').setOrigin(0, 0);
-        player = this.physics.add.sprite(game.config.width/4, game.config.height/2, 'doggo').setOrigin(0, 0);
+        player = this.physics.add.sprite(game.config.width/4, game.config.height/2, 'doggo').setOrigin(0.5, 0.5);
         player.setMaxVelocity(0, 600);
         player.setCollideWorldBounds(true);
 
