@@ -13,6 +13,9 @@ class Boss extends Phaser.Physics.Arcade.Sprite {
         this.attacking = false; // flag for checking attacks
         this.playerDead = false; // flag for checking if you die
         this.faster = false; // flag for if game has become more difficult
+        this.hairballGroup = this.scene.add.group({
+            runChildUpdate: true    // make sure update runs on group children
+        });
     }
 
 
@@ -37,23 +40,36 @@ class Boss extends Phaser.Physics.Arcade.Sprite {
 
         // Check if currently attacking, and if not start a random attack
         if (!this.attacking){
-            if ((this.numberOfTicks % 100) == 0){
+            if ((this.numberOfTicks % 200) == 0){
                 this.attacking = true
+                this.numberOfTicks = 0;
 
                 // randomly pick a number between 1-3, and make that attack
-                this.randomAttack = this.getRandomInt(0,3);
+                this.randomAttack = this.getRandomInt(0,4);
                 if (this.randomAttack == 0){
                     this.beam1Attack();
                 } else if (this.randomAttack == 1){
                     this.beam2Attack();
                 } else if (this.randomAttack == 2){
                     this.beam3Attack();
+                } else if (this.randomAttack == 3){
+                    this.hairballAlternating();
                 } else {
                     console.error("Trying to make a beam 4 attack?");
                 }
+
             }
         }
 
+        // Checks if the hairball tracker is still active, and if not, destroys it and ends the attack.
+        if(this.attacking){
+            if(this.hairballTracker){
+                if(this.hairballTracker.x < 0){
+                    this.hairballTracker.destroy();
+                    this.attacking = false;
+                }
+            }
+        }
     }
 
     // Beam 1 attack, top third of the screen
@@ -168,6 +184,28 @@ class Boss extends Phaser.Physics.Arcade.Sprite {
                 this.attacking = false;
             }, null, this);
         }, null, this);
+    }
+
+    // Alternating hairball attack
+    hairballAlternating(){
+        this.attacking = true;
+
+        // creates the hairballs, 5 in a column, with 4 rows
+        for (let i = 1; i < 5; i++){
+            for (let j = 1; j < 6; j++){
+                if (i % 2 == 0){
+                    let hairball = new Hairball(this.scene, game.config.width + 200*i, 108*j, 'hairball');
+                    this.hairballGroup.add(hairball);
+                } else {
+                    let hairball = new Hairball(this.scene, game.config.width + 200*i, 108*j - 54, 'hairball');
+                    this.hairballGroup.add(hairball);
+                }
+            }
+        }
+
+        // creates the hairball tracker, an extra hairball not scene that tells us when the attack finishes
+        this.hairballTracker = this.scene.physics.add.sprite(game.config.width + 1100, -50, 'hairball').setVelocityX(-400);
+        this.scene.physics.add.collider(this.hairballGroup, player, this.attackCollision, null, this);
     }
 
     // check if the player is dead and flag it

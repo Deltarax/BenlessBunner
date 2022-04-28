@@ -14,6 +14,7 @@ class Play extends Phaser.Scene {
         this.load.image('clouds2', './assets/clouds_2.png');
         this.load.image('bigBeam', './assets/biggerBeam.png');
         this.load.image('portal', './assets/portal.png');
+        this.load.image('hairball', './assets/hairball.png');
 
         // load audio
         this.load.audio('attack', './assets/dogFire.wav');
