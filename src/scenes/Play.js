@@ -54,7 +54,7 @@ class Play extends Phaser.Scene {
 
         // creating the score
         score = 0;
-        this.scoreText = this.add.text(game.config.width/2, game.config.height/8, '0', menuConfig).setOrigin(0.5);
+        this.scoreText = this.add.text(game.config.width/16, game.config.height/12, 'Score: ' + score, menuConfig).setOrigin(0, 0);
 
         // Adding doggo
         // this.playerSprite = new Player(this, game.config.width/4, game.config.height/2, 'doggo').setOrigin(0, 0);

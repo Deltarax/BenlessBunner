@@ -8,6 +8,10 @@ let config = {
         default: 'arcade',
         arcade: { debug: true }
     },
+    fps: {
+        target: 60,
+        forceSetTimeOut: true
+    }, 
     scene: [ Menu, Play, GameOver ]
 }
 
