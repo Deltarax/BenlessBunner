@@ -91,7 +91,7 @@ class Play extends Phaser.Scene {
             // play Attack audio
             this.attackSFX.play();
             // Creates the projectile
-            let bone = new Bone(this, player.x, player.y, 'bone').setOrigin(0.5, 0.5);
+            let bone = new Bone(this, player.x+40, player.y, 'bone').setOrigin(0.5, 0.5);
             this.boneGroup.add(bone);
             // this.bone.setVelocityX(1800); // Zoom!
         }
