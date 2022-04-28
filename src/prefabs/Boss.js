@@ -45,7 +45,7 @@ class Boss extends Phaser.Physics.Arcade.Sprite {
                 this.numberOfTicks = 0;
 
                 // randomly pick a number between 1-3, and make that attack
-                this.randomAttack = this.getRandomInt(0,4);
+                this.randomAttack = this.getRandomInt(0,5);
                 if (this.randomAttack == 0){
                     this.beam1Attack();
                 } else if (this.randomAttack == 1){
@@ -54,6 +54,8 @@ class Boss extends Phaser.Physics.Arcade.Sprite {
                     this.beam3Attack();
                 } else if (this.randomAttack == 3){
                     this.hairballAlternating();
+                } else if (this.randomAttack == 4){
+                    this.hairballShotgun();
                 } else {
                     console.error("Trying to make a beam 4 attack?");
                 }
@@ -260,10 +262,10 @@ class Boss extends Phaser.Physics.Arcade.Sprite {
         for (let i = 1; i < 5; i++){
             for (let j = 1; j < 6; j++){
                 if (i % 2 == 0){
-                    let hairball = new Hairball(this.scene, game.config.width + 200*i, 108*j, 'hairball');
+                    let hairball = new Hairball(this.scene, game.config.width + 200*i, 108*j, 'hairball', 0);
                     this.hairballGroup.add(hairball);
                 } else {
-                    let hairball = new Hairball(this.scene, game.config.width + 200*i, 108*j - 54, 'hairball');
+                    let hairball = new Hairball(this.scene, game.config.width + 200*i, 108*j - 54, 'hairball', 0);
                     this.hairballGroup.add(hairball);
                 }
             }
@@ -271,6 +273,34 @@ class Boss extends Phaser.Physics.Arcade.Sprite {
 
         // creates the hairball tracker, an extra hairball not scene that tells us when the attack finishes
         this.hairballTracker = this.scene.physics.add.sprite(game.config.width + 1100, -50, 'hairball').setVelocityX(-400);
+        this.scene.physics.add.collider(this.hairballGroup, player, this.attackCollision, null, this);
+    }
+
+     // Alternating hairball attack
+     hairballShotgun(){
+        this.attacking = true;
+
+        // creates the hairballs, 7 per shot, with 6 shots
+        for (let i = 1; i < 7; i++){
+            //creates the 7 hairball shotgun spread, each with a different trajectory
+            let hairball = new Hairball(this.scene, game.config.width+ 50*i, game.config.height/2, 'hairball', 1);
+            this.hairballGroup.add(hairball);
+            let hairball2 = new Hairball(this.scene, game.config.width+ 50*i, game.config.height/2, 'hairball', 2);
+            this.hairballGroup.add(hairball2);
+            let hairball3 = new Hairball(this.scene, game.config.width+ 50*i, game.config.height/2, 'hairball', 3);
+            this.hairballGroup.add(hairball3);
+            let hairball4 = new Hairball(this.scene, game.config.width+ 50*i, game.config.height/2, 'hairball', 4);
+            this.hairballGroup.add(hairball4);
+            let hairball5 = new Hairball(this.scene, game.config.width+ 50*i, game.config.height/2, 'hairball', 5);
+            this.hairballGroup.add(hairball5);
+            let hairball6 = new Hairball(this.scene, game.config.width+ 50*i, game.config.height/2, 'hairball', 6);
+            this.hairballGroup.add(hairball6);
+            let hairball7 = new Hairball(this.scene, game.config.width+ 50*i, game.config.height/2, 'hairball', 7);
+            this.hairballGroup.add(hairball7);
+        }
+
+        // creates the hairball tracker, an extra hairball not scene that tells us when the attack finishes
+        this.hairballTracker = this.scene.physics.add.sprite(game.config.width + 400, game.config.height/2, 'hairball').setVelocityX(-400).setAlpha(0);
         this.scene.physics.add.collider(this.hairballGroup, player, this.attackCollision, null, this);
     }
 
