@@ -21,17 +21,17 @@ class Play extends Phaser.Scene {
 
         // menu text configuration
         let menuConfig = {
-        fontFamily: 'Papyrus',
-        fontSize: '28px',
-        // backgroundColor: '#FFFFFF',
-        color: '#0000FF',
-        align: 'right',
-        padding: {
-            top: 5,
-            bottom: 5,
-        },
-        fixedWidth: 0
-        }
+            fontFamily: 'Archistico_Bold',
+            fontSize: '32px',
+            // backgroundColor: '#FFFFFF',
+            color: '#0000FF',
+            align: 'right',
+            padding: {
+                top: 5,
+                bottom: 5,
+            },
+            fixedWidth: 0
+          }
 
         // creating the score
         score = 0;
