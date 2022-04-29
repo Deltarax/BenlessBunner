@@ -88,12 +88,14 @@ class Play extends Phaser.Scene {
             player.body.position.y += 5;
         }
         if (Phaser.Input.Keyboard.JustDown(keyF)) {
-            // play Attack audio
-            this.attackSFX.play();
-            // Creates the projectile
-            let bone = new Bone(this, player.x+40, player.y, 'bone').setOrigin(0.5, 0.5);
-            this.boneGroup.add(bone);
-            // this.bone.setVelocityX(1800); // Zoom!
+            if (!boss.playerDead){
+                // play Attack audio
+                this.attackSFX.play();
+                // Creates the projectile
+                let bone = new Bone(this, player.x+40, player.y, 'bone').setOrigin(0.5, 0.5);
+                this.boneGroup.add(bone);
+                // this.bone.setVelocityX(1800); // Zoom!
+            }
         }
 
         // updating the boss
