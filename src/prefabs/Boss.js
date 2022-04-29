@@ -60,6 +60,8 @@ class Boss extends Phaser.Physics.Arcade.Sprite {
                     console.error("Trying to make a beam 4 attack?");
                 }
 
+                // this.hairballShotgun();
+
             }
         }
 
@@ -273,7 +275,7 @@ class Boss extends Phaser.Physics.Arcade.Sprite {
 
         // creates the hairball tracker, an extra hairball not scene that tells us when the attack finishes
         this.hairballTracker = this.scene.physics.add.sprite(game.config.width + 1100, -50, 'hairball').setVelocityX(-400);
-        this.scene.physics.add.collider(this.hairballGroup, player, this.attackCollision, null, this);
+        this.scene.physics.add.overlap(this.hairballGroup, player, this.attackCollision, null, this);
     }
 
      // Alternating hairball attack
@@ -301,7 +303,7 @@ class Boss extends Phaser.Physics.Arcade.Sprite {
 
         // creates the hairball tracker, an extra hairball not scene that tells us when the attack finishes
         this.hairballTracker = this.scene.physics.add.sprite(game.config.width + 400, game.config.height/2, 'hairball').setVelocityX(-400).setAlpha(0);
-        this.scene.physics.add.collider(this.hairballGroup, player, this.attackCollision, null, this);
+        this.scene.physics.add.overlap(this.hairballGroup, player, this.attackCollision, null, this);
     }
 
     // check if the player is dead and flag it
