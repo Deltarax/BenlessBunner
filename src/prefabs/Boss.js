@@ -45,22 +45,22 @@ class Boss extends Phaser.Physics.Arcade.Sprite {
                 this.numberOfTicks = 0;
 
                 // randomly pick a number between 1-3, and make that attack
-                this.randomAttack = this.getRandomInt(0,5);
-                if (this.randomAttack == 0){
-                    this.beam1Attack();
-                } else if (this.randomAttack == 1){
-                    this.beam2Attack();
-                } else if (this.randomAttack == 2){
-                    this.beam3Attack();
-                } else if (this.randomAttack == 3){
-                    this.hairballAlternating();
-                } else if (this.randomAttack == 4){
-                    this.hairballShotgun();
-                } else {
-                    console.error("Trying to make a beam 4 attack?");
-                }
+                // this.randomAttack = this.getRandomInt(0,5);
+                // if (this.randomAttack == 0){
+                //     this.beam1Attack();
+                // } else if (this.randomAttack == 1){
+                //     this.beam2Attack();
+                // } else if (this.randomAttack == 2){
+                //     this.beam3Attack();
+                // } else if (this.randomAttack == 3){
+                //     this.hairballAlternating();
+                // } else if (this.randomAttack == 4){
+                //     this.hairballShotgun();
+                // } else {
+                //     console.error("Trying to make a beam 4 attack?");
+                // }
 
-                // this.hairballShotgun();
+                this.hairballShotgun();
 
             }
         }

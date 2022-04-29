@@ -31,9 +31,9 @@ class Hairball extends Phaser.Physics.Arcade.Sprite {
             } else if (this.number == 5){
                 this.setVelocityY(-100);
             } else if (this.number == 6){
-                this.setVelocityY(150);
+                this.setVelocityY(175);
             } else if (this.number == 7){
-                this.setVelocityY(-150);
+                this.setVelocityY(-175);
             }
         }
 
