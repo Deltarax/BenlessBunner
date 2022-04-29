@@ -42,6 +42,7 @@ class Play extends Phaser.Scene {
         player = this.physics.add.sprite(game.config.width/4, game.config.height/2, 'doggo').setOrigin(0.5, 0.5);
         player.setMaxVelocity(0, 600);
         player.setCollideWorldBounds(true);
+        player.body.setCircle(25);
 
         //Adding boss
         boss = new Boss(this, game.config.width - game.config.width/4, game.config.height/2, 'evilCat').setOrigin(0, 0.5);
