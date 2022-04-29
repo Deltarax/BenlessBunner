@@ -1,3 +1,9 @@
+// Collaborators: Solomon Bell, Esmerelda Rangel, Jackson Gerald
+// Title: Benless Bunner
+// Date Completed: ???
+// Creative Tilt: Technically, Jackson created a system that perfectly fits our bullet hell experience. Particularly, the way he manages the bullets and bones is perfect.
+// We also enjoy that we took something like a bullet hell, made it endless, and tried to flip it on its head by making it very calm.
+// Aesthetically, Esme took our idea of having a calm, relaxing bullet hell and created the perfect art. The game is very calming to play, even when things start to feel chaotic.
 
 let config = {
     type: Phaser.CANVAS,
