@@ -101,7 +101,7 @@ class Play extends Phaser.Scene {
         // updating the boss
         boss.update();
         if (boss.playerDead) {
-            this.scoreText.text = "dead";
+            // this.scoreText.text = "dead";
             // this.cameras.main.fadeOut(6000, 0, 0, 0);    // trying to get a fadeout to work but doesnt
             this.cameras.main.shake(2000, 0.0075);
             player.setCollideWorldBounds(false);
