@@ -12,6 +12,7 @@ class Play extends Phaser.Scene {
         this.BGM.play();
         this.onHit = this.sound.add('onHit', {volume: 0.2});
         this.attackSFX = this.sound.add('attack', {volume: 0.4});
+        this.beamSFX = this.sound.add('ufoBeam', {volume: 0.5});
 
 
         // adding the background

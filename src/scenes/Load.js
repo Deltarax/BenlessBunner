@@ -21,7 +21,7 @@ class Load extends Phaser.Scene {
         // load audio
         this.load.audio('attack', './assets/dogFire.wav');
         this.load.audio('onHit', './assets/boneHit.wav');
-        this.load.audio('beamSFX', './assets/ufoBeam.wav');
+        this.load.audio('ufoBeam', './assets/ufoBeam.wav');
         this.load.audio('BGM', './assets/Bens_Dream.mp3');
     }
 
