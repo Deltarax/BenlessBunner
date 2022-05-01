@@ -37,9 +37,30 @@ class Play extends Phaser.Scene {
         score = 0;
         this.scoreText = this.add.text(game.config.width/16, game.config.height/12, 'Score: ' + score, menuConfig).setOrigin(0, 0);
 
+        // create dog animations
+        this.anims.create({
+            key: 'waddle',
+            frames: this.anims.generateFrameNames('doggoAnim', {
+                start: 1, end: 4, zeroPad: 2,
+                prefix: 'hang_'
+                }),
+            duration: 500,
+            repeat: -1
+        });
+
+        this.anims.create({
+            key: 'hover',
+            frames: this.anims.generateFrameNames('doggoAnim', {
+                start: 1, end: 2, zeroPad: 2,
+                prefix: 'hang_'
+                }),
+            duration: 500,
+            repeat: -1
+        });
+
         // Adding doggo
         // this.playerSprite = new Player(this, game.config.width/4, game.config.height/2, 'doggo').setOrigin(0, 0);
-        player = this.physics.add.sprite(game.config.width/4, game.config.height/2, 'doggo').setOrigin(0.5, 0.5);
+        player = this.physics.add.sprite(game.config.width/4, game.config.height/2, 'doggoAnim').setOrigin(0.5, 0.5);
         player.setMaxVelocity(0, 600);
         player.setCollideWorldBounds(true);
         player.body.setCircle(25);
@@ -65,15 +86,19 @@ class Play extends Phaser.Scene {
         this.boneGroup = this.add.group({
             runChildUpdate: true    // make sure update runs on group children
         });
+
+        if (!boss.playerDead){
+            player.anims.play('waddle');
+        }
+
     }
 
     update() {
         // console.log("Now Updating");
         // player.update();
 
-        this.background.tilePositionX += 8;
-        this.cloud2.tilePositionX += 4;
-        this.cloud1.tilePositionX += 8;
+        this.cloud2.tilePositionX += 3;
+        this.cloud1.tilePositionX += 6;
 
         // Player Movement
         if(keyLEFT.isDown) {
@@ -84,6 +109,7 @@ class Play extends Phaser.Scene {
         }
         if (keyUP.isDown) {
             player.body.position.y -= 5;
+            
         }
         if (keyDOWN.isDown) {
             player.body.position.y += 5;

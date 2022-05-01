@@ -6,6 +6,7 @@ class Load extends Phaser.Scene {
     preload(){
         // Load images/tile sprites
         this.load.image('doggo', './assets/doggo_n.png');
+        this.load.atlas('doggoAnim', './assets/doggo_sheet.png', './assets/doggo_sprites.json')
         this.load.image('evilCat', './assets/cat2.png');
         this.load.image('bone', './assets/bone2.png');
         this.load.image('epicBackground', './assets/pagePlay.png');
