@@ -48,16 +48,6 @@ class Play extends Phaser.Scene {
             repeat: -1
         });
 
-        this.anims.create({
-            key: 'hover',
-            frames: this.anims.generateFrameNames('doggoAnim', {
-                start: 1, end: 2, zeroPad: 2,
-                prefix: 'hang_'
-                }),
-            duration: 500,
-            repeat: -1
-        });
-
         // Adding doggo
         // this.playerSprite = new Player(this, game.config.width/4, game.config.height/2, 'doggo').setOrigin(0, 0);
         player = this.physics.add.sprite(game.config.width/4, game.config.height/2, 'doggoAnim').setOrigin(0.5, 0.5);

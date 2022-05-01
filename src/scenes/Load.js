@@ -14,7 +14,9 @@ class Load extends Phaser.Scene {
         this.load.image('clouds2', './assets/clouds_2.png');
         this.load.image('bigBeam', './assets/beam.png');
         this.load.image('portal', './assets/portalLight.png');
-        this.load.image('hairball', './assets/hairball.png');
+        this.load.image('hairball', './assets/hairball_n.png');
+        this.load.image('catMenu', './assets/catHead2.png');
+        this.load.image('dogMenu', './assets/dogHead.png')
         
         // load audio
         this.load.audio('attack', './assets/dogFire.wav');
