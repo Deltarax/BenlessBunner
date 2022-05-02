@@ -9,6 +9,9 @@
 // Aesthetically, Esme took our idea of having a calm, relaxing bullet hell and created the perfect art. The game feels calming to play, even when things start to get chaotic.
 // Finally Solomon created a fantastic soundtrack from scratch that mixed the themes of a calm cute game + a frantic bullethell perfectly!
 
+// NOTE: We have one game breaking bug that we cannot find a solution for. If you score 19 points, and score another point during a beam
+// attack, the game will break. If that happens, refresh the page and make sure you don't make the 20th hit untill the screen is clear!
+
 let config = {
     type: Phaser.CANVAS,
     width: 960,

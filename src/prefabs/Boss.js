@@ -13,6 +13,8 @@ class Boss extends Phaser.Physics.Arcade.Sprite {
         this.attacking = false; // flag for checking attacks
         this.playerDead = false; // flag for checking if you die
         this.faster = false; // flag for if game has become more difficult
+        this.harder = false;
+        this.hardest = false;
         this.hairballGroup = this.scene.add.group({
             runChildUpdate: true    // make sure update runs on group children
         });
@@ -36,6 +38,16 @@ class Boss extends Phaser.Physics.Arcade.Sprite {
                 this.faster = true;
             }
         }
+        if (score > 39){
+            if(!this.attacking){
+                this.harder = true;
+            }
+        }
+        if (score > 59){
+            if(!this.attacking){
+                this.hardest = true;
+            }
+        }
 
         // console.log(this.numberOfTicks);
 
@@ -46,19 +58,47 @@ class Boss extends Phaser.Physics.Arcade.Sprite {
                 this.numberOfTicks = 0;
 
                 // randomly pick a number between 1-3, and make that attack
-                this.randomAttack = this.getRandomInt(0,5);
-                if (this.randomAttack == 0){
-                    this.beam1Attack();
-                } else if (this.randomAttack == 1){
-                    this.beam2Attack();
-                } else if (this.randomAttack == 2){
-                    this.beam3Attack();
-                } else if (this.randomAttack == 3){
-                    this.hairballAlternating();
-                } else if (this.randomAttack == 4){
-                    this.hairballShotgun();
+                // if harder, then add alternating attack
+                // if hardest, add shotgun attack
+                if (this.harder && !this.hardest) {
+                    this.randomAttack = this.getRandomInt(0,4);
+                    if (this.randomAttack == 0){
+                        this.beam1Attack();
+                    } else if (this.randomAttack == 1){
+                        this.beam2Attack();
+                    } else if (this.randomAttack == 2){
+                        this.beam3Attack();
+                    } else if (this.randomAttack == 3){
+                        this.hairballAlternating();
+                    } else {
+                        console.error("Trying to make a beam 4 attack?");
+                    }
+                } else if (this.harder && this.hardest){
+                    this.randomAttack = this.getRandomInt(0,5);
+                    if (this.randomAttack == 0){
+                        this.beam1Attack();
+                    } else if (this.randomAttack == 1){
+                        this.beam2Attack();
+                    } else if (this.randomAttack == 2){
+                        this.beam3Attack();
+                    } else if (this.randomAttack == 3){
+                        this.hairballAlternating();
+                    } else if (this.randomAttack == 4){
+                        this.hairballShotgun();
+                    } else {
+                        console.error("Trying to make a beam 4 attack?");
+                    }
                 } else {
-                    console.error("Trying to make a beam 4 attack?");
+                    this.randomAttack = this.getRandomInt(0,3);
+                    if (this.randomAttack == 0){
+                        this.beam1Attack();
+                    } else if (this.randomAttack == 1){
+                        this.beam2Attack();
+                    } else if (this.randomAttack == 2){
+                        this.beam3Attack();
+                    } else {
+                        console.error("Trying to make a beam 4 attack?");
+                    }
                 }
 
                 // this.hairballShotgun();
@@ -265,7 +305,7 @@ class Boss extends Phaser.Physics.Arcade.Sprite {
 
     // Alternating hairball attack
     hairballAlternating(){
-        this.attacking = true;
+        // this.attacking = true;
         this.scene.hiss.play();
 
         // creates the hairballs, 5 in a column, with 4 rows
@@ -288,7 +328,7 @@ class Boss extends Phaser.Physics.Arcade.Sprite {
 
      // Alternating hairball attack
      hairballShotgun(){
-        this.attacking = true;
+        // this.attacking = true;
         this.scene.meow.play();
 
         // creates the hairballs, 7 per shot, with 6 shots
