@@ -16,6 +16,7 @@ class Boss extends Phaser.Physics.Arcade.Sprite {
         this.hairballGroup = this.scene.add.group({
             runChildUpdate: true    // make sure update runs on group children
         });
+        this.harderAttacks = false;
     }
 
 
@@ -30,7 +31,7 @@ class Boss extends Phaser.Physics.Arcade.Sprite {
             this.y = (150 * Math.sin(this.movementTicks * 0.5 * Math.PI/40)) + game.config.height/2
         }
 
-        if (score > 20){
+        if (score > 19){
             if(!this.attacking){
                 this.faster = true;
             }
@@ -105,6 +106,7 @@ class Boss extends Phaser.Physics.Arcade.Sprite {
         this.clock = this.scene.time.delayedCall(1000, () => {
 
             //create the beam and check for collisions
+            this.scene.beamSFX.play();
             this.beam = this.scene.physics.add.sprite(0, game.config.height/4 - 20, 'bigBeam').setOrigin(0, 0.5).setAlpha(0);
             this.scene.tweens.add({
                 targets: [this.beam],
@@ -114,6 +116,7 @@ class Boss extends Phaser.Physics.Arcade.Sprite {
             this.scene.physics.add.collider(this.beam, player, this.attackCollision, null, this);
 
             if(this.faster){
+                this.scene.beamSFX.play();
                 this.beam2 = this.scene.physics.add.sprite(0, game.config.height/2, 'bigBeam').setOrigin(0, 0.5).setAlpha(0);
                 this.scene.tweens.add({
                     targets: [this.beam2],
@@ -165,6 +168,7 @@ class Boss extends Phaser.Physics.Arcade.Sprite {
         this.clock = this.scene.time.delayedCall(1000, () => {
 
             //create the beam and check for collisions
+            this.scene.beamSFX.play();
             this.beam = this.scene.physics.add.sprite(0, game.config.height/2, 'bigBeam').setOrigin(0, 0.5).setAlpha(0);
             this.scene.tweens.add({
                 targets: [this.beam],
@@ -174,6 +178,7 @@ class Boss extends Phaser.Physics.Arcade.Sprite {
             this.scene.physics.add.collider(this.beam, player, this.attackCollision, null, this);
 
             if(this.faster){
+                this.scene.beamSFX.play();
                 this.beam2 = this.scene.physics.add.sprite(0, game.config.height/4 + game.config.height/2 + 20, 'bigBeam').setOrigin(0, 0.5).setAlpha(0);
                 this.scene.tweens.add({
                     targets: [this.beam2],
@@ -225,6 +230,7 @@ class Boss extends Phaser.Physics.Arcade.Sprite {
         this.clock = this.scene.time.delayedCall(1000, () => {
 
             //create the beam and check for collisions
+            this.scene.beamSFX.play();
             this.beam = this.scene.physics.add.sprite(0, game.config.height/4 + game.config.height/2 + 20, 'bigBeam').setOrigin(0, 0.5).setAlpha(0);
             this.scene.tweens.add({
                 targets: [this.beam],
@@ -234,6 +240,7 @@ class Boss extends Phaser.Physics.Arcade.Sprite {
             this.scene.physics.add.collider(this.beam, player, this.attackCollision, null, this);
 
             if(this.faster){
+                this.scene.beamSFX.play();
                 this.beam2 = this.scene.physics.add.sprite(0, game.config.height/4 - 20, 'bigBeam').setOrigin(0, 0.5).setAlpha(0);
                 this.scene.tweens.add({
                     targets: [this.beam2],
@@ -259,6 +266,7 @@ class Boss extends Phaser.Physics.Arcade.Sprite {
     // Alternating hairball attack
     hairballAlternating(){
         this.attacking = true;
+        this.scene.hiss.play();
 
         // creates the hairballs, 5 in a column, with 4 rows
         for (let i = 1; i < 5; i++){
@@ -281,6 +289,7 @@ class Boss extends Phaser.Physics.Arcade.Sprite {
      // Alternating hairball attack
      hairballShotgun(){
         this.attacking = true;
+        this.scene.meow.play();
 
         // creates the hairballs, 7 per shot, with 6 shots
         for (let i = 1; i < 7; i++){

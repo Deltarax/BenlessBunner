@@ -10,9 +10,11 @@ class Play extends Phaser.Scene {
         this.BGM = this.sound.add('BGM', {volume: 0.15});
         this.BGM.setLoop(true);
         this.BGM.play();
-        this.onHit = this.sound.add('onHit', {volume: 0.2});
-        this.attackSFX = this.sound.add('attack', {volume: 0.4});
-        this.beamSFX = this.sound.add('ufoBeam', {volume: 0.5});
+        this.onHit = this.sound.add('onHit', {volume: 0.3});
+        this.attackSFX = this.sound.add('attack', {volume: 0.3});
+        this.beamSFX = this.sound.add('ufoBeam', {volume: 0.6});
+        this.hiss = this.sound.add('hiss', {volume: 0.3});
+        this.meow = this.sound.add('meow', {volume: 0.3});
 
 
         // adding the background
